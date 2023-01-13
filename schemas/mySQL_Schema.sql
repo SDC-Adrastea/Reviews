@@ -98,6 +98,8 @@ CREATE DATABASE reviews;
 
 USE reviews;
 
+-------------------- review data -------------------
+
 CREATE TABLE reviewData {
   id int NOT NULL AUTO_INCREMENT,
   product int NOT NULL,
@@ -124,4 +126,60 @@ CREATE TABLE photos {
   id int NOT NULL AUTO_INCREMENT,
   url VARCHAR(250),
   FOREIGN KEY (id) REFERENCES results(review_id)
+};
+
+-------------------- meta data -------------------
+
+CREATE TABLE metaData {
+  id int NOT NULL AUTO_INCREMENT,
+  product_id int NOT NULL,
+  PRIMARY KEY (id)
+};
+
+CREATE TABLE recommended {
+  id int NOT NULL AUTO_INCREMENT,
+  rating int NOT NULL,
+  FOREIGN KEY (id) REFERENCES metaData(product_id)
+};
+
+CREATE TABLE ratings {
+  id int NOT NULL AUTO_INCREMENT,
+  rating int NOT NULL,
+  FOREIGN KEY (id) REFERENCES metaData(product_id)
+};
+
+CREATE TABLE characteristics {
+  id int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id) REFERENCES metaData(product_id)
+};
+
+CREATE TABLE size {
+  id int NOT NULL,
+  value int,
+  FOREIGN KEY (id) REFERENCES characteristics(id)
+};
+
+CREATE TABLE width {
+  id int NOT NULL,
+  value int,
+  FOREIGN KEY (id) REFERENCES characteristics(id)
+};
+
+CREATE TABLE comfort {
+  id int NOT NULL,
+  value int,
+  FOREIGN KEY (id) REFERENCES characteristics(id)
+};
+
+CREATE TABLE length {
+  id int NOT NULL,
+  value int,
+  FOREIGN KEY (id) REFERENCES characteristics(id)
+};
+
+CREATE TABLE quality {
+  id int NOT NULL,
+  value int,
+  FOREIGN KEY (id) REFERENCES characteristics(id)
 };
