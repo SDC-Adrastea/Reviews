@@ -1,0 +1,22 @@
+{
+  "name": "reviews",
+  "version": "1.0.0",
+  "description": "SDC project for Hack Reactor",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpp2207-sdc-Adrastea/Reviews.git"
+  },
+  "author": "Josh Krebs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpp2207-sdc-Adrastea/Reviews/issues"
+  },
+  "homepage": "https://github.com/rpp2207-sdc-Adrastea/Reviews#readme",
+  "dependencies": {
+    "jest": "^29.3.1"
+  }
+}
