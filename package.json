@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/rpp2207-sdc-Adrastea/Reviews#readme",
   "dependencies": {
+    "csv-parser": "^3.0.0",
     "jest": "^29.3.1"
   }
 }
