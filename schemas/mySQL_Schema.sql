@@ -1,114 +1,16 @@
--- CREATE DATABASE chat;
-
--- USE chat;
-
--- CREATE TABLE messages (
---   /* Describe your table here.*/
---   id int NOT NULL AUTO_INCREMENT,
---   userid int NOT NULL,
---   text varchar(200) NOT NULL,
---   roomname varchar(20),
---   PRIMARY KEY (ID)
--- );
-
--- /* Create other tables and define schemas for them here! */
-
--- CREATE TABLE users (
---   id int NOT NULL AUTO_INCREMENT,
---   username varchar(40) NOT NULL,
---   PRIMARY KEY (ID)
--- )
-
---  data get /reviews:
-
--- {
---   "product": "2",
---   "page": 0,
---   "count": 5,
---   "results": [
---     {
---       "review_id": 5,
---       "rating": 3,
---       "summary": "I'm enjoying wearing these shades",
---       "recommend": false,
---       "response": null,
---       "body": "Comfortable and practical.",
---       "date": "2019-04-14T00:00:00.000Z",
---       "reviewer_name": "shortandsweeet",
---       "helpfulness": 5,
---       "photos": [{
---           "id": 1,
---           "url": "urlplaceholder/review_5_photo_number_1.jpg"
---         },
---         {
---           "id": 2,
---           "url": "urlplaceholder/review_5_photo_number_2.jpg"
---         },
---         // ...
---       ]
---     },
---     {
---       "review_id": 3,
---       "rating": 4,
---       "summary": "I am liking these glasses",
---       "recommend": false,
---       "response": "Glad you're enjoying the product!",
---       "body": "They are very dark. But that's good because I'm in very sunny spots",
---       "date": "2019-06-23T00:00:00.000Z",
---       "reviewer_name": "bigbrotherbenjamin",
---       "helpfulness": 5,
---       "photos": [],
---     },
---     // ...
---   ]
--- }
-
---  metaData:
-
--- {
---   "product_id": "2",
---   "ratings": {
---     2: 1,
---     3: 1,
---     4: 2,
---     // ...
---   },
---   "recommended": {
---     0: 5
---     // ...
---   },
---   "characteristics": {
---     "Size": {
---       "id": 14,
---       "value": "4.0000"
---     },
---     "Width": {
---       "id": 15,
---       "value": "3.5000"
---     },
---     "Comfort": {
---       "id": 16,
---       "value": "4.0000"
---     },
---     // ...
--- }
-
-
 CREATE DATABASE reviews;
 
 USE reviews;
 
--------------------- review data -------------------
-
-CREATE TABLE reviewData {
-  id int NOT NULL AUTO_INCREMENT,
+CREATE TABLE review_data (
+  id INT NOT NULL AUTO_INCREMENT,
   product int NOT NULL,
   page int NOT NULL,
   count int NOT NULL,
-  PRIMARY KEY (product)
-};
+  PRIMARY KEY (id)
+);
 
-CREATE TABLE results {
+CREATE TABLE results (
   id int NOT NULL AUTO_INCREMENT,
   review_id int NOT NULL,
   rating int NOT NULL,
@@ -116,70 +18,78 @@ CREATE TABLE results {
   recommended VARCHAR(10),
   response VARCHAR(200),
   body VARCHAR(200),
-  date DATE(50),
-  reviewer_name VARCHAR(50) NOT NULL,
-  helpfulness VARCHAR(10)
-  FOREIGN KEY (id) REFERENCES reviewData(product)
-};
+  post_date VARCHAR(50),
+  reviewer_name VARCHAR(50),
+  helpfulness VARCHAR(10),
+  product_ref INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (product_ref) REFERENCES review_data(id)
 
-CREATE TABLE photos {
+);
+
+CREATE TABLE photos (
   id int NOT NULL AUTO_INCREMENT,
   url VARCHAR(250),
-  FOREIGN KEY (id) REFERENCES results(review_id)
-};
+  results_ref INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (results_ref) REFERENCES results(id)
+);
 
--------------------- meta data -------------------
 
-CREATE TABLE metaData {
+
+
+
+CREATE TABLE meta_data (
   id int NOT NULL AUTO_INCREMENT,
   product_id int NOT NULL,
   PRIMARY KEY (id)
-};
+);
 
-CREATE TABLE recommended {
-  id int NOT NULL AUTO_INCREMENT,
+CREATE TABLE recommended (
   rating int NOT NULL,
-  FOREIGN KEY (id) REFERENCES metaData(product_id)
-};
+  meta_ref INT,
+  FOREIGN KEY (meta_ref) REFERENCES meta_data(id)
+);
 
-CREATE TABLE ratings {
-  id int NOT NULL AUTO_INCREMENT,
+CREATE TABLE ratings (
   rating int NOT NULL,
-  FOREIGN KEY (id) REFERENCES metaData(product_id)
-};
+  meta_ref INT,
+  FOREIGN KEY (meta_ref) REFERENCES meta_data(id)
+);
 
-CREATE TABLE characteristics {
+CREATE TABLE characteristics (
   id int NOT NULL AUTO_INCREMENT,
+  meta_ref INT,
   PRIMARY KEY (id),
-  FOREIGN KEY (id) REFERENCES metaData(product_id)
-};
+  FOREIGN KEY (meta_ref) REFERENCES meta_data(id)
+);
 
-CREATE TABLE size {
-  id int NOT NULL,
+CREATE TABLE size (
+  char_ref int NOT NULL,
   value int,
-  FOREIGN KEY (id) REFERENCES characteristics(id)
-};
+  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
+);
 
-CREATE TABLE width {
-  id int NOT NULL,
+CREATE TABLE width (
+  char_ref int NOT NULL,
   value int,
-  FOREIGN KEY (id) REFERENCES characteristics(id)
-};
+  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
+);
 
-CREATE TABLE comfort {
-  id int NOT NULL,
+CREATE TABLE comfort (
+  char_ref int NOT NULL,
   value int,
-  FOREIGN KEY (id) REFERENCES characteristics(id)
-};
+  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
+);
 
-CREATE TABLE length {
-  id int NOT NULL,
+CREATE TABLE length (
+  char_ref int NOT NULL,
   value int,
-  FOREIGN KEY (id) REFERENCES characteristics(id)
-};
+  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
+);
 
-CREATE TABLE quality {
-  id int NOT NULL,
+CREATE TABLE quality (
+  char_ref int NOT NULL,
   value int,
-  FOREIGN KEY (id) REFERENCES characteristics(id)
-};
+  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
+);
