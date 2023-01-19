@@ -2,94 +2,52 @@ CREATE DATABASE reviews;
 
 USE reviews;
 
-CREATE TABLE review_data (
-  id INT NOT NULL AUTO_INCREMENT,
-  product int NOT NULL,
-  page int NOT NULL,
-  count int NOT NULL,
-  PRIMARY KEY (id)
-);
+-- reviews.csv:
+
+-- id,product_id,rating,date,summary,body,recommend,reported,reviewer_name,reviewer_email,response,helpfulness
+-- 1,1,5,1596080481467,"This product was great!","I really did or did not like this product based on whether it was sustainably sourced.  Then I found out that its made from nothing at all.",true,false,"funtime","first.last@gmail.com",null,8
+
+-- characteristic_reviews.csv:
+
+-- id,characteristic_id,review_id,value
+-- 1,1,1,4
+-- 2,2,1,3
+-- 3,3,1,5
+
+-- reviews_photos.csv:
+
+-- id,review_id,url
+-- 1,5,"https://images.unsplash.com/photo-1560570803-7474c0f9af99?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80"
+-- 2,5,"https://images.unsplash.com/photo-1561693532-9ff59442a7db?ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80"
 
 CREATE TABLE results (
-  id int NOT NULL AUTO_INCREMENT,
-  review_id int NOT NULL,
-  rating int NOT NULL,
+  id INT NOT NULL,
+  product_id INT,
+  rating INT(20),
+  date BIGINT,
   summary VARCHAR(200),
-  recommended VARCHAR(10),
+  body VARCHAR(500),
+  recommend VARCHAR(100),
+  reported VARCHAR(100),
+  reviewer_name VARCHAR(100),
+  reviewer_email VARCHAR(100),
   response VARCHAR(200),
-  body VARCHAR(200),
-  post_date VARCHAR(50),
-  reviewer_name VARCHAR(50),
-  helpfulness VARCHAR(10),
-  product_ref INT,
-  PRIMARY KEY (id),
-  FOREIGN KEY (product_ref) REFERENCES review_data(id)
-
+  helpfulness INT,
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE photos (
-  id int NOT NULL AUTO_INCREMENT,
-  url VARCHAR(250),
-  results_ref INT,
-  PRIMARY KEY (id),
-  FOREIGN KEY (results_ref) REFERENCES results(id)
-);
-
-
-
-
-
-CREATE TABLE meta_data (
-  id int NOT NULL AUTO_INCREMENT,
-  product_id int NOT NULL,
+  id INT(10),
+  review_id INT(10),
+  url VARCHAR(500),
   PRIMARY KEY (id)
 );
 
-CREATE TABLE recommended (
-  rating int NOT NULL,
-  meta_ref INT,
-  FOREIGN KEY (meta_ref) REFERENCES meta_data(id)
-);
-
-CREATE TABLE ratings (
-  rating int NOT NULL,
-  meta_ref INT,
-  FOREIGN KEY (meta_ref) REFERENCES meta_data(id)
-);
-
 CREATE TABLE characteristics (
-  id int NOT NULL AUTO_INCREMENT,
-  meta_ref INT,
-  PRIMARY KEY (id),
-  FOREIGN KEY (meta_ref) REFERENCES meta_data(id)
+  id INT,
+  characteristic_id INT,
+  review_id INT,
+  value INT
 );
 
-CREATE TABLE size (
-  char_ref int NOT NULL,
-  value int,
-  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
-);
 
-CREATE TABLE width (
-  char_ref int NOT NULL,
-  value int,
-  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
-);
-
-CREATE TABLE comfort (
-  char_ref int NOT NULL,
-  value int,
-  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
-);
-
-CREATE TABLE length (
-  char_ref int NOT NULL,
-  value int,
-  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
-);
-
-CREATE TABLE quality (
-  char_ref int NOT NULL,
-  value int,
-  FOREIGN KEY (char_ref) REFERENCES characteristics(id)
-);
