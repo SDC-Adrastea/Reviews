@@ -18,9 +18,18 @@ app.get('/', (req, res) => {
 
 app.get('/test', (req, res) => {
   console.log('test working')
-  console.log('req.query', req.query);
-  res.send('TEST')
+  // console.log('req.query', req.query);
+  // res.send('TEST')
+
+  getReviews(req, res)
+    .then((res) => {
+      console.log('res', res);
+    })
+    .catch((err) => {
+      console.log('err', err)
+    })
 })
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
