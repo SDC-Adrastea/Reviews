@@ -2,8 +2,6 @@ const db = require('../../model/index.js');
 const { getResults } = require('../../model/getResults.js');
 const { getPhotos } = require('../../model/getPhotos.js')
 
-
-
 module.exports = {
   getReviews: (req, res) => {
     let query = req.query;
@@ -13,7 +11,6 @@ module.exports = {
       "page": 0,
       "count": query.count
     };
-
 
     return new Promise((resolve, reject) => {
       Promise.all([getResults(query), getPhotos(query)])
@@ -27,14 +24,11 @@ module.exports = {
       })
       .then((data) => {
         resolve(data);
-
       })
       .catch((err) => {
         reject(err);
       })
     })
-
-
 
   }
 }
