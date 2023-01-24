@@ -6,6 +6,9 @@ const connection = require('../model/index.js')
 const dotenv = require('dotenv');
 dotenv.config();
 
+var cors = require('cors');
+app.use(cors());
+
 const port = process.env.PORT;
 app.use(express.json());
 
@@ -16,14 +19,14 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/test', (req, res) => {
-  console.log('test working')
-  // console.log('req.query', req.query);
-  // res.send('TEST')
+app.get('/reviews', (req, res) => {
 
   getReviews(req, res)
-    .then((res) => {
-      console.log('res', res);
+    .then((data) => {
+      // console.log('res', data);
+      console.log('sending data')
+      console.log('data', data);
+      res.send(data)
     })
     .catch((err) => {
       console.log('err', err)

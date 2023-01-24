@@ -1,17 +1,40 @@
-const db = require('../../model/index.js')
+const db = require('../../model/index.js');
+const { getResults } = require('../../model/getResults.js');
+const { getPhotos } = require('../../model/getPhotos.js')
+
+
 
 module.exports = {
   getReviews: (req, res) => {
-    // console.log('req', req.query)
-    // console.log('db', db.connection)
-    // console.log(db)
+    let query = req.query;
+
+    let data = {
+      "product_id": query.product_id,
+      "page": 0,
+      "count": query.count
+    };
+
 
     return new Promise((resolve, reject) => {
-      db.connection.query('SELECT * FROM results WHERE id = 1', (err, results, fields) => {
-        if (err) reject(err);
+      Promise.all([getResults(query), getPhotos(query)])
+      .then((response) => {
+        let results = response[0];
+        let photos = response[1];
 
-        resolve(results);
+        data.results = results;
+        data.results[0].photos = photos
+        return data;
+      })
+      .then((data) => {
+        resolve(data);
+
+      })
+      .catch((err) => {
+        reject(err);
       })
     })
+
+
+
   }
 }
