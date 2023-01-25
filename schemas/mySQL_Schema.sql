@@ -1,4 +1,4 @@
-CREATE DATABASE reviews;
+CREATE DATABASE IF NOT EXISTS reviews;
 
 USE reviews;
 
@@ -20,7 +20,7 @@ USE reviews;
 -- 1,5,"https://images.unsplash.com/photo-1560570803-7474c0f9af99?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80"
 -- 2,5,"https://images.unsplash.com/photo-1561693532-9ff59442a7db?ixlib=rb-1.2.1&auto=format&fit=crop&w=975&q=80"
 
-CREATE TABLE results (
+CREATE TABLE IF NOT EXISTS results (
   id INT NOT NULL,
   product_id INT,
   rating INT(20),
@@ -32,22 +32,31 @@ CREATE TABLE results (
   reviewer_name VARCHAR(100),
   reviewer_email VARCHAR(100),
   response VARCHAR(200),
-  helpfulness INT,
-  PRIMARY KEY (id)
+  helpfulness INT
 );
 
-CREATE TABLE photos (
+CREATE INDEX id_of_product ON results(product_id);
+
+CREATE TABLE IF NOT EXISTS photos (
   id INT(10),
   review_id INT(10),
-  url VARCHAR(500),
-  PRIMARY KEY (id)
+  url VARCHAR(500)
 );
 
-CREATE TABLE characteristics (
+CREATE INDEX p_id ON photos(review_id);
+
+CREATE TABLE characteristics_reviews (
   id INT,
   characteristic_id INT,
   review_id INT,
   value INT
 );
 
+CREATE TABLE characteristics (
+  id INT,
+  product_id INT,
+  name VARCHAR(50)
+);
+
+CREATE INDEX pc_id ON characteristics(product_id);
 
