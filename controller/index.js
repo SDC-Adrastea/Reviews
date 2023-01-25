@@ -27,7 +27,6 @@ app.get('/reviews', (req, res) => {
 
   getReviews(req, res)
     .then((data) => {
-      console.log('data', data)
       res.send(data)
     })
     .catch((err) => {
@@ -36,6 +35,7 @@ app.get('/reviews', (req, res) => {
 });
 
 app.get('/metaData', (req, res) => {
+
   getMetaData(req, res)
     .then((data) => {
       res.send(data);

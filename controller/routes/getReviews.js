@@ -14,19 +14,10 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
 
-      // Promise.all([getResults(query), getPhotos(query)])
-      // .then((response) => {
-      //   let results = response[0];
-      //   let photos = response[1];
-
-      //   data.results = results;
-      //   data.results[0].photos = photos
-
-      //   return data;
-      // })
       getResults(query)
         .then((data) => {
 
+          // refactor to put this logic in the query may be faster
           data.forEach((review) => {
             if (!review.photos) review.photos = [];
           })
