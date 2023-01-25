@@ -27,6 +27,7 @@ app.get('/reviews', (req, res) => {
 
   getReviews(req, res)
     .then((data) => {
+      console.log('data', data)
       res.send(data)
     })
     .catch((err) => {

@@ -6,7 +6,7 @@ module.exports = {
   getReviews: (req, res) => {
     let query = req.query;
 
-    let data = {
+    let resObj = {
       "product_id": query.product_id,
       "page": 0,
       "count": query.count
@@ -25,12 +25,18 @@ module.exports = {
       //   return data;
       // })
       getResults(query)
-      .then((data) => {
-        resolve(data);
-      })
-      .catch((err) => {
-        reject(err);
-      })
+        .then((data) => {
+
+          data.forEach((review) => {
+            if (!review.photos) review.photos = [];
+          })
+
+          resObj.results = data;
+          resolve(resObj);
+        })
+        .catch((err) => {
+          reject(err);
+        })
     })
 
   }
