@@ -3,6 +3,10 @@ const db = require('./index.js');
 module.exports = {
   getMeta: (params) => {
 
+    return new Promise((resolve, reject) => {
+
+
+
     console.log("CALLING METADATA 🐡")
 
     let product_id = params.product_id;
@@ -140,13 +144,14 @@ module.exports = {
         resObj["recommended"] = recObj;
         resObj["characteristics"] = charsObj;
 
-        // resolve(resObj)
-        return resObj
+        resolve(resObj)
+        // return resObj
       })
       .catch((err) => {
         console.log('metadata prmise/all  error ', err);
       })
 
+    })
 
     // let query = `SELECT rating, recommend FROM results WHERE product_id = ${product_id}`;
     // return new Promise((resolve, reject) => {
