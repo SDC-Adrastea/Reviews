@@ -82,11 +82,10 @@ module.exports = {
         // consider adding different middleware files
         // transform data:
 
-
-
         let ratingObj = {};
         let recObj = {};
         let charsObj = {};
+        let charCount = {};
 
         let ratsAndRecs = data[0];
         let charsRes = data[1];
@@ -109,25 +108,40 @@ module.exports = {
 
         })
 
-        // the value of each one is an average:
-
-        // need to accumulate the average of the ratings on each object
+        // console.log('charsRes', charsRes)
 
         charsRes.forEach((obj) => {
-          console.log('chars objs', obj);
           let curChar = obj.name;
+          let curVal = obj.value
 
-          delete obj.name;
-          charsObj[curChar] = obj;
-          // charsObj.curChar = obj;
+          if (charCount[curChar] === undefined) {
+            charCount[curChar] = 1;
+          } else {
+            charCount[curChar]++;
+          }
+
+          if (charsObj[curChar] === undefined) {
+            delete obj.name;
+            charsObj[curChar] = obj;
+          } else {
+            charsObj[curChar].value += curVal;
+          }
+
         })
 
-        console.log('charsObj', charsObj)
 
-        // console.log('rating obj', ratingObj)
-        // console.log('rec obj', recObj)
+        Object.keys(charsObj).forEach((key) => {
+          charsObj[key].value = charsObj[key].value / charCount[key];
+        })
 
+        // console.log('charsObj', charsObj)
 
+        resObj['ratings'] = ratingObj;
+        resObj["recommended"] = recObj;
+        resObj["characteristics"] = charsObj;
+
+        // resolve(resObj)
+        return resObj
       })
       .catch((err) => {
         console.log('metadata prmise/all  error ', err);
