@@ -31,6 +31,7 @@ app.get('/reviews', (req, res) => {
       res.status(200).send(data)
     })
     .catch((err) => {
+      res.send(400)
       console.log('err', err)
     })
 });
@@ -39,9 +40,10 @@ app.get('/metaData', (req, res) => {
 
   getMetaData(req, res)
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((err) => {
+      res.send(400)
       console.log('metadata error: ', err);
     })
 });

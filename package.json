@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test-coverage": "jest --coverage",
     "server-dev": "nodemon controller/index.js"
   },
   "repository": {
