@@ -1,4 +1,6 @@
-{
+module.exports = {
+
+    reviewData: {
   "product": "71699",
   "page": 0,
   "count": 999999999,
@@ -646,4 +648,5 @@
           "photos": []
       }
   ]
+                }
 }

@@ -20,14 +20,15 @@ const { markHelpful } = require('./routes/markHelpful.js');
 const { reportReview } = require('./routes/reportReview.js');
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.status(200).send('Hello World!')
 })
 
 app.get('/reviews', (req, res) => {
 
   getReviews(req, res)
     .then((data) => {
-      res.send(data)
+      console.log('sending data')
+      res.status(200).send(data)
     })
     .catch((err) => {
       console.log('err', err)

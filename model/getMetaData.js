@@ -5,8 +5,6 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
 
-
-
     console.log("CALLING METADATA 🐡")
 
     let product_id = params.product_id;
@@ -76,8 +74,6 @@ module.exports = {
         resolve(results);
       })
     })
-
-
 
     Promise.all([ratsAndRec, chars])
       .then((data) => {
@@ -151,18 +147,7 @@ module.exports = {
         console.log('metadata prmise/all  error ', err);
       })
 
-    })
-
-    // let query = `SELECT rating, recommend FROM results WHERE product_id = ${product_id}`;
-    // return new Promise((resolve, reject) => {
-    //   db.connection.query(query, (err, results, fields) => {
-    //     if (err) reject(err);
-
-    //     resolve(results);
-    //   })
-    // })
-
-
+    });
 
   }
 }

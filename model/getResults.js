@@ -11,7 +11,7 @@ module.exports = {
 
     let query =
     `select id as review_id, rating, summary, recommend, response, body, FROM_UNIXTIME(date/1000) AS date, reviewer_name, helpfulness,
-    ( select JSON_ARRAYAGG(JSON_OBJECT("id", id, url, url))
+    ( select JSON_ARRAYAGG(JSON_OBJECT("id", id, "url", url))
         from (
             select rp.id, rp.url
             from results r

@@ -6,8 +6,10 @@ module.exports = {
   getReviews: (req, res) => {
     let query = req.query;
 
+    console.log('reqQuer for testing', req.query);
+
     let resObj = {
-      "product_id": query.product_id,
+      "product": query.product_id,
       "page": 0,
       "count": query.count
     };
