@@ -65,7 +65,9 @@ module.exports = {
       FROM characteristics
       JOIN characteristics_reviews
       ON characteristics.id = characteristics_reviews.characteristic_id
-      WHERE characteristics.product_id = 71669`
+      WHERE characteristics.product_id = 71668`
+
+      // ALTER TABLE characteristics_reviews MODIFY COLUMN characteristic_id INT PRIMARY KEY NOT NULL;
 
       const chars = new Promise((resolve , reject) => {
         db.connection.query(charQuery, (err, results, fields) => {
