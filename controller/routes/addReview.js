@@ -6,7 +6,7 @@ module.exports = {
 
     let query = req.query;
 
-    console.log('ADD REVIEW req.query', query)
+    // console.log('ADD REVIEW req.query', query)
 
     return postReview(query);
 

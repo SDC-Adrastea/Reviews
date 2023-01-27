@@ -3,7 +3,9 @@ const db = require('./index.js');
 module.exports = {
   postReview: (params) => {
 
-    console.log('params in postRvoew', params)
+    // JOBS:
+    // - add photos to photo table
+    // - add characteristics?
 
     let {
         product_id, rating, recommend,

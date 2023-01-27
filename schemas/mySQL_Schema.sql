@@ -45,14 +45,14 @@ CREATE TABLE IF NOT EXISTS photos (
 
 CREATE INDEX p_id ON photos(review_id);
 
-CREATE TABLE characteristics_reviews (
+CREATE TABLE IF NOT EXISTS characteristics_reviews (
   id INT,
   characteristic_id INT,
   review_id INT,
   value INT
 );
 
-CREATE TABLE characteristics (
+CREATE TABLE IF NOT EXISTS characteristics (
   id INT,
   product_id INT,
   name VARCHAR(50)

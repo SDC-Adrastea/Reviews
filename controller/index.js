@@ -32,7 +32,7 @@ app.get('/reviews', (req, res) => {
     })
     .catch((err) => {
       res.send(400)
-      console.log('err', err)
+      console.log('GET reviews ERR: ', err)
     })
 });
 
@@ -44,7 +44,7 @@ app.get('/metaData', (req, res) => {
     })
     .catch((err) => {
       res.send(400)
-      console.log('metadata error: ', err);
+      console.log('GET metadata ERR: ', err);
     })
 });
 
@@ -56,7 +56,7 @@ app.post('/reviews', (req, res) => {
       res.send(201);
     })
     .catch((err) => {
-      console.log('metadata error: ', err);
+      console.log('POST review ERR: ', err);
     })
 });
 
@@ -66,7 +66,7 @@ app.put('/helpful', (req, res) => {
       res.send(204);
     })
     .catch((err) => {
-      console.log('metadata error: ', err);
+      console.log('PUT helpful ERR: ', err);
     })
 });
 
@@ -76,7 +76,7 @@ app.put('/reportReview', (req, res) => {
       res.send(204);
     })
     .catch((err) => {
-      console.log('metadata error: ', err);
+      console.log('PUT report ERR: ', err);
     })
 });
 

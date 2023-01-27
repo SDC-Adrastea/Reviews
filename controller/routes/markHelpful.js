@@ -5,6 +5,8 @@ module.exports = {
   markHelpful: (req, res) => {
     let query = req.query;
 
+
+
     return sendHelpful(query);
 
   }
