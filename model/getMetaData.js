@@ -91,6 +91,8 @@ module.exports = {
 
       let ratQuery = `SELECT rating, recommend FROM results WHERE product_id = ${product_id}`;
 
+      // SELECT rating, recommend FROM results WHERE product_id = 71669;
+
       const ratsAndRec = new Promise((resolve , reject) => {
         db.connection.query(ratQuery, (err, results, fields) => {
           if (err) reject(err);
@@ -100,11 +102,17 @@ module.exports = {
       })
 
       let charQuery =
-      `SELECT *
+      `SELECT characteristics_reviews.id, value, name
       FROM characteristics
       JOIN characteristics_reviews
       ON characteristics.id = characteristics_reviews.characteristic_id
-      WHERE characteristics.product_id = 71668`
+      WHERE characteristics.product_id = ${product_id}`;
+
+      // `SELECT *
+      // FROM characteristics
+      // JOIN characteristics_reviews
+      // ON characteristics.id = characteristics_reviews.characteristic_id
+      // WHERE characteristics.product_id = ${product_id}`;
 
       // ALTER TABLE characteristics_reviews MODIFY COLUMN characteristic_id INT PRIMARY KEY NOT NULL;
 
@@ -152,7 +160,7 @@ module.exports = {
           // console.log('charsRes', charsRes)
 
           charsRes.forEach((obj) => {
-            let curChar = obj.name;
+            let curChar = obj.name.replace(/['"]+/g, '');
             let curVal = obj.value
 
             if (charCount[curChar] === undefined) {
@@ -163,6 +171,7 @@ module.exports = {
 
             if (charsObj[curChar] === undefined) {
               delete obj.name;
+
               charsObj[curChar] = obj;
             } else {
               charsObj[curChar].value += curVal;

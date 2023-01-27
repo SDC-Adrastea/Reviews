@@ -1,10 +1,48 @@
 module.exports = {
+    reviewData_test:
+    {
+        "product": "77778",
+        "page": 0,
+        "count": 2,
+        "results": [
+            {
+                "review_id": 449440,
+                "rating": 2,
+                "summary": "Voluptatem vel ab.",
+                "recommend": "true",
+                "response": "null",
+                "body": "Aut omnis molestiae omnis sit. Sed minus quia ut est nulla qui fugit molestiae autem. Qui incidunt et porro. Sed illum dolore cupiditate voluptas molestias inventore et rerum. Aut consequuntur delectus. Velit voluptatibus tempora doloribus non sit nihil eius.",
+                "date": "2021-03-25T15:33:16.116Z",
+                "reviewer_name": "Kameron17",
+                "helpfulness": 28,
+                "photos": []
+            },
+            {
+                "review_id": 449438,
+                "rating": 4,
+                "summary": "Iure id nisi nisi iste ut ullam perferendis.",
+                "recommend": "true",
+                "response": "null",
+                "body": "Dolor natus similique. Dicta explicabo dicta rerum maiores vero ut rerum. Similique vitae quas quisquam aut alias deleniti ut consequatur.",
+                "date": "2020-06-04T15:54:16.293Z",
+                "reviewer_name": "\"Lilyan.Cassin78\"",
+                "helpfulness": 18,
+                "photos": [
+                    {
+                        "id": 213130,
+                        "url": "https://images.unsplash.com/photo-1554774853-d50f9c681ae2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
+                    }
+                ]
+            }
+
+        ]
+      },
 
     reviewData: {
-  "product": "71699",
-  "page": 0,
-  "count": 999999999,
-  "results": [
+        "product": "71699",
+        "page": 0,
+        "count": 999999999,
+        "results": [
       {
           "review_id": 1276826,
           "rating": 5,

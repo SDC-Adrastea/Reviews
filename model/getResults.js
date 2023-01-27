@@ -3,11 +3,11 @@ const db = require('./index.js');
 module.exports = {
   getResults: (params) => {
 
-  let sort = 'helpfulness';
-  let count = params.count;
-  let product_id = params.product_id;
+  let { sort, count, product_id } = params;
 
-  if (params.sort === 'relevant') sort = 'helpfulness';
+  if (sort === 'helpful') sort = 'helpfulness';
+  if (sort === 'relevant') sort = 'helpfulness';
+  if (sort === 'newest') sort = 'date';
 
     let query =
     `select id as review_id, rating, summary, recommend, response, body, FROM_UNIXTIME(date/1000) AS date, reviewer_name, helpfulness,

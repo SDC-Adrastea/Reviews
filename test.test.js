@@ -2,8 +2,8 @@ const nock = require('nock');
 const request = require('supertest');
 const assert = require('assert');
 const baseURL = "http://localhost:8080";
-const { reviewData } = require('./tests/reviewData.js');
-const { metaData } = require('./tests/metaDataData.js');
+const { reviewData_test } = require('./tests/reviewData.js');
+const { metaData_test } = require('./tests/metaDataData.js');
 // jest.setTimeout(10000)
 
 
@@ -20,16 +20,9 @@ describe('GET /', () => {
 
 describe('GET /reviews', () => {
 
-  // it('responds with 200 for good request', async function() {
-
-  //   const response = await request(baseURL)
-  //     .get('/reviews?product_id=71669&count=10')
-  //     expect(response.status).toEqual(200);
-  // }, 10000);
-
   it('responds with 200 for good request', async function() {
     const response = await request(baseURL)
-      .get('/reviews?product_id=71669&count=10')
+      .get('/reviews?product_id=71669&count=10&sort=relevant')
       expect(response.status).toEqual(200);
   });
 
@@ -39,11 +32,12 @@ describe('GET /reviews', () => {
       expect(response.status).toEqual(400);
   });
 
-  // it('sends back data in correct shape', async function() {
-  //   const response = await request(baseURL)
-  //     .get('/reviews?product_id=71669&count=10')
-  //     expect(response.body).toEqual(reviewData);
-  // });
+  it('sends back data in correct shape', async function() {
+    const response = await request(baseURL)
+      .get('/reviews?product_id=77778&count=2&sort=relevant')
+
+      expect(response.body).toEqual(reviewData_test);
+  });
 
 });
 
@@ -61,23 +55,16 @@ describe('GET /metaData', () => {
       expect(response.status).toEqual(500);
   });
 
-  // it('send back status of 400 if issue', async function() {
-  //   const response = await request(baseURL)
-  //     .get('/metaData')
-  //     expect(response.status).toEqual(400);
-  // }, 10000);
-
-  // it('sends back data in correct shape', async function() {
-  //   const response = await request(baseURL)
-  //     .get('/metaData?product_id=71669')
-  //     expect(response.body).toEqual(metaData);
-  // }, 10000)
+  it('sends back data in correct shape', async function() {
+    const response = await request(baseURL)
+      .get('/metaData?product_id=77777')
+      expect(response.body).toEqual(metaData_test);
+  })
 
 });
 
 
 describe('POST /reviews', () => {
-
 
   it('responds with 201', async function() {
     const response = await request(baseURL)
