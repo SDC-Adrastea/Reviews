@@ -43,7 +43,7 @@ app.get('/metaData', (req, res) => {
       res.status(200).send(data);
     })
     .catch((err) => {
-      res.send(400)
+      res.send(500)
       console.log('GET metadata ERR: ', err);
     })
 });

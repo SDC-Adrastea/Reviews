@@ -49,11 +49,17 @@ describe('GET /reviews', () => {
 
 describe('GET /metaData', () => {
 
-  // it('send back status of 400 if issue', async function() {
-  //   const response = await request(baseURL)
-  //     .get('/metaData')
-  //     expect(response.status).toEqual(400);
-  // }, 8000);
+  it('send back status of 200', async function() {
+    const response = await request(baseURL)
+      .get('/metaData?product_id=71669')
+      expect(response.status).toEqual(200);
+  });
+
+  it('send back status of 500 if issue', async function() {
+    const response = await request(baseURL)
+      .get('/metaData')
+      expect(response.status).toEqual(500);
+  });
 
   // it('send back status of 400 if issue', async function() {
   //   const response = await request(baseURL)
@@ -72,7 +78,6 @@ describe('GET /metaData', () => {
 
 describe('POST /reviews', () => {
 
-  // need tons of params for this test to work...
 
   it('responds with 201', async function() {
     const response = await request(baseURL)

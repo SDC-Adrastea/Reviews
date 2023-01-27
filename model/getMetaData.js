@@ -1,11 +1,49 @@
 const db = require('./index.js');
 
 module.exports = {
+
+  getMetaRatRec: (params) => {
+
+    let { product_id } = params;
+
+    let ratQuery = `SELECT rating, recommend FROM results WHERE product_id = ${product_id}`;
+
+    const ratsAndRec = new Promise((resolve , reject) => {
+      db.connection.query(ratQuery, (err, results, fields) => {
+        if (err) reject(err);
+
+        resolve(results);
+      });
+    });
+
+  },
+
+  getMetaChars: (params) => {
+
+    let { product_id } = params;
+
+    let charQuery =
+    `SELECT *
+    FROM characteristics
+    JOIN characteristics_reviews
+    ON characteristics.id = characteristics_reviews.characteristic_id
+    WHERE characteristics.product_id = ${product_id}`
+
+    const chars = new Promise((resolve , reject) => {
+      db.connection.query(charQuery, (err, results, fields) => {
+        if (err) reject(err);
+
+        resolve(results);
+      });
+    });
+
+  },
+
   getMeta: (params) => {
 
     return new Promise((resolve, reject) => {
 
-      console.log("CALLING METADATA 🐡")
+      // console.log("CALLING METADATA 🐡")
 
       let product_id = params.product_id;
 
@@ -52,6 +90,7 @@ module.exports = {
 
 
       let ratQuery = `SELECT rating, recommend FROM results WHERE product_id = ${product_id}`;
+
       const ratsAndRec = new Promise((resolve , reject) => {
         db.connection.query(ratQuery, (err, results, fields) => {
           if (err) reject(err);
@@ -146,6 +185,7 @@ module.exports = {
           // return resObj
         })
         .catch((err) => {
+          reject(err);
           console.log('metadata prmise/all  error ', err);
         })
 
