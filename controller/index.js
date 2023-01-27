@@ -56,6 +56,7 @@ app.post('/reviews', (req, res) => {
       res.send(201);
     })
     .catch((err) => {
+      res.send(500);
       console.log('POST review ERR: ', err);
     })
 });
@@ -66,6 +67,7 @@ app.put('/helpful', (req, res) => {
       res.send(204);
     })
     .catch((err) => {
+      res.send(500);
       console.log('PUT helpful ERR: ', err);
     })
 });
@@ -76,6 +78,7 @@ app.put('/reportReview', (req, res) => {
       res.send(204);
     })
     .catch((err) => {
+      res.send(500);
       console.log('PUT report ERR: ', err);
     })
 });
