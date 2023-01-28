@@ -1,6 +1,10 @@
-*node_modules
-*characteristics.csv
-*reviews.csv
-*reviews_photos.csv
-*characteristics_reviews.csv
-*.env
+
+node_modules/
+coverage/
+data/
+package-lock.json
+characteristics.csv
+reviews.csv
+reviews_photos.csv
+characteristics_reviews.csv
+.env
