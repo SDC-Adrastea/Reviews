@@ -1,3 +1,0 @@
-{"/Users/joshkrebs/SDC-Atelier/Reviews/tests/metaDataData.js": {"path":"/Users/joshkrebs/SDC-Atelier/Reviews/tests/metaDataData.js","statementMap":{"0":{"start":{"line":1,"column":0},"end":{"line":56,"column":1}}},"fnMap":{},"branchMap":{},"s":{"0":1},"f":{},"b":{},"_coverageSchema":"1a1c01bbd47fc00a2c39e90264f33305004495a9","hash":"60608e9e09f388865e72db76aee3ee406b684dc7"}
-,"/Users/joshkrebs/SDC-Atelier/Reviews/tests/reviewData.js": {"path":"/Users/joshkrebs/SDC-Atelier/Reviews/tests/reviewData.js","statementMap":{"0":{"start":{"line":1,"column":0},"end":{"line":690,"column":1}}},"fnMap":{},"branchMap":{},"s":{"0":1},"f":{},"b":{},"_coverageSchema":"1a1c01bbd47fc00a2c39e90264f33305004495a9","hash":"dfbd73f662d893a9c6fd78d04c6836b687131a5a"}
-}
