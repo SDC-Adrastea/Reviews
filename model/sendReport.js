@@ -3,7 +3,7 @@ const db = require('./index.js');
 module.exports = {
   sendReport: (params) => {
 
-    console.log('send report params ', params)
+    // console.log('send report params ', params)
     let { review_id } = params;
 
     let query = `UPDATE results SET reported = true WHERE id = ${review_id}`;

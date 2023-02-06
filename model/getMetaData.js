@@ -202,3 +202,20 @@ module.exports = {
 
   }
 }
+
+// select id as review_id, rating, summary, recommend, response, body, FROM_UNIXTIME(date/1000) AS date, reviewer_name, helpfulness,
+//     ( select JSON_ARRAYAGG(JSON_OBJECT("id", id, "url", url))
+//         from (
+//             select rp.id, rp.url
+//             from results r
+//             inner join photos rp
+//             on r.id = rp.review_id
+//             where rp.review_id = results.id
+//         ) photo_rows
+//     ) as photos
+//     from results
+//     WHERE product_id=999999 AND reported=false
+//     ORDER BY helpfulness
+//     DESC LIMIT 5;
+
+//     SELECT * FROM results ORDER BY ID DESC LIMIT 1;

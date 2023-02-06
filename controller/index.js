@@ -27,7 +27,7 @@ app.get('/reviews', (req, res) => {
 
   getReviews(req, res)
     .then((data) => {
-      console.log('sending data')
+      // console.log('sending data')
       res.status(200).send(data)
     })
     .catch((err) => {
@@ -52,7 +52,7 @@ app.get('/metaData', (req, res) => {
 app.post('/reviews', (req, res) => {
   addReview(req, res)
     .then((data) => {
-      console.log('post review data', data);
+
       res.send(201);
     })
     .catch((err) => {

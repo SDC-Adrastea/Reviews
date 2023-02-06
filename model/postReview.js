@@ -13,6 +13,8 @@ module.exports = {
         summary, name, email
         } = params;
 
+    // console.log('params', params)
+
     // data shape:
 
 
