@@ -4,9 +4,11 @@
   "description": "SDC project for Hack Reactor",
   "main": "index.js",
   "scripts": {
+    "stress-test": "k6 run stressTest.js",
     "test": "jest",
     "test-coverage": "jest --coverage",
-    "server-dev": "nodemon controller/index.js"
+    "server-dev": "nodemon controller/index.js",
+    "init-db": "mysql -u root --password < schemas/mySQL_Schema.sql"
   },
   "repository": {
     "type": "git",
