@@ -8,3 +8,5 @@ reviews.csv
 reviews_photos.csv
 characteristics_reviews.csv
 .env
+docker-compose.yml
+Dockerfile

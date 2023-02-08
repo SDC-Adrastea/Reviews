@@ -18,12 +18,15 @@ dotenv.config();
 
 var connection = mysql.createConnection({
   host: process.env.MYSQL_HOST,
+  // host: `localhost`,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
+  // port: 3306
   // socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock',
   // port: 80
 });
+
 
 connection.connect((err, res) => {
   if (err) throw err;
